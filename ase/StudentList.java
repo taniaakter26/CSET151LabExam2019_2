@@ -4,17 +4,21 @@ import java.text.*;
 import java.util.*;
 public class StudentList {
     public static void main(String[] args) {
-
+        if(args.length == 0){
+            System.out.println("usage java ase.StudentList (a | r| c|)");
+            return;
+        }
 //		Check arguments
-        if(args[0].equals("a")) {
+        if(args[0].equals("a"))
+        {
             System.out.println("Loading data ...");
             try {
-                BufferedReader s = new BufferedReader(
+                BufferedReader fileStream = new BufferedReader(
                         new InputStreamReader(
                                 new FileInputStream("students.txt")));
-                String r = s.readLine();
-                String i[] = r.split(",");
-                for(String j : i) { System.out.println(j); }
+                String contents = fileStream.readLine();
+                String words[] = contents.split(",");
+                for(String word : words) { System.out.println(word); }
             } catch (Exception e){}
             System.out.println("Data Loaded.");
         }
@@ -22,19 +26,20 @@ public class StudentList {
         {
             System.out.println("Loading data ...");
             try {
-                BufferedReader s = new BufferedReader(
+                BufferedReader fileStream = new BufferedReader(
                         new InputStreamReader(
                                 new FileInputStream("students.txt")));
-                String r = s.readLine();
-                System.out.println(r);
-                String i[] = r.split(",");
+                String contents = fileStream.readLine();
+                System.out.println(contents);
+                String words[] = contents.split(",");
                 Random x = new Random();
                 int y = x.nextInt();
-                System.out.println(i[y]);
+                System.out.println(words[y]);
             } catch (Exception e){}
             System.out.println("Data Loaded.");
         }
-        else if(args[0].contains("+")){
+        else if(args[0].contains("+"))
+        {
             System.out.println("Loading data ...");
             try {
                 BufferedWriter s = new BufferedWriter(
@@ -54,15 +59,15 @@ public class StudentList {
         {
             System.out.println("Loading data ...");
             try {
-                BufferedReader s = new BufferedReader(
+                BufferedReader fileStream = new BufferedReader(
                         new InputStreamReader(
                                 new FileInputStream("students.txt")));
-                String r = s.readLine();
-                String i[] = r.split(",");
+                String contents = fileStream.readLine();
+                String words[] = contents.split(",");
                 boolean done = false;
                 String t = args[0].substring(1);
-                for(int idx = 0; idx<i.length && !done; idx++) {
-                    if(i[idx].equals(t)) {
+                for(int idx = 0; idx<words.length && !done; idx++) {
+                    if(words[idx].equals(t)) {
                         System.out.println("We found it!");
                         done=true;
                     }
@@ -74,11 +79,11 @@ public class StudentList {
         {
             System.out.println("Loading data ...");
             try {
-                BufferedReader s = new BufferedReader(
+                BufferedReader fileStream = new BufferedReader(
                         new InputStreamReader(
                                 new FileInputStream("students.txt")));
-                String D = s.readLine();
-                char a[] = D.toCharArray();
+                String contents = fileStream.readLine();
+                char a[] = contents.toCharArray();
                 boolean in_word = false;
                 int count=0;
                 for(char c:a) {
